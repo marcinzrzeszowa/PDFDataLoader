@@ -1,4 +1,4 @@
-package org.example.structure;
+package org.example.report;
 
 public record ReportHeader(String componentName,
                            String date,

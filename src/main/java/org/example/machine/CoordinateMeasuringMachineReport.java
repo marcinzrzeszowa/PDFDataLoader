@@ -1,17 +1,16 @@
-package org.example.structure;
+package org.example.machine;
+
+import org.example.files.InputFileManager;
+import org.example.report.ReportCharacteristic;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
+import java.util.Map;
 
-public class CoordinateMeasuringMachineReport implements MeasurementReport, MeasurementReportMethods {
-
-    private StringBuilder rawInputText;
-    private ReportHeader reportHeader;
-    private ArrayList<ReportAttribute> reportAttributesList;
+public class CoordinateMeasuringMachineReport extends MachineReport {
 
     /*
     Extracts attributes and parameters from text
@@ -26,41 +25,32 @@ public class CoordinateMeasuringMachineReport implements MeasurementReport, Meas
      | - oznacza alternatywę, dopasuje alternatywne wzorce
      ([pP][A-Za-z0-9]+_[A-Za-z0-9]+(_[A-Za-z0-9]+)*(_[A-Za-z]+)?) - dopasowuje parametry zaczynające się od litery "p" lub "P", a następnie jednej lub więcej liter lub cyfr, po których następuje podkreślenie, a następnie jedna lub więcej liter lub cyfr, z opcjonalnymi grupami podkreślenia i liter lub cyfr oraz z dodatkową grupą podkreślenia i liter na końcu
      * */
-    private static final String REPORT_ATTRIBUTE_REGEX = "([pP]\\d+(_\\d+)*(_[A-Za-z0-9]+)?)|([pP]\\d+_[A-Za-z]+(_[A-Za-z0-9]+)?)|([pP][A-Za-z0-9]+_[A-Za-z0-9]+(_[A-Za-z0-9]+)*(_[A-Za-z]+)?)";
+    private static final String REPORT_ATTRIBUTE_NAME_REGEX = "([pP]\\d+(_\\d+)*(_[A-Za-z0-9]+)?)|([pP]\\d+_[A-Za-z]+(_[A-Za-z0-9]+)?)|([pP][A-Za-z0-9]+_[A-Za-z0-9]+(_[A-Za-z0-9]+)*(_[A-Za-z]+)?)";
 
-
-    public CoordinateMeasuringMachineReport(StringBuilder rawInputText) throws IOException {
-        this.rawInputText = rawInputText;
-
-        reportHeader = extractHeader(rawInputText);
-        reportAttributesList = extractAttributes(rawInputText);
-    }
 
     @Override
-    public ArrayList<ReportAttribute> extractAttributes(StringBuilder rawText) throws IOException {
-        ArrayList<String> properties;
+    public List<ReportCharacteristic> extractReportCharacteristics(StringBuilder file, InputFileManager fileManager) throws IOException {
+        List<ReportCharacteristic> characteristicList = new ArrayList<>();
+        ReportCharacteristic characteristic;
+        String lineOfText;
 
-
-
-
-        BufferedReader bufReader = new BufferedReader(new StringReader(rawText.toString()));
-
-        String line=null;
-        int tmpLineCounter= 0;
-        while( (line=bufReader.readLine()) != null )
+        BufferedReader bufReader = new BufferedReader(new StringReader(file.toString()));
+        while( (lineOfText=bufReader.readLine()) != null )
         {
-
-            //TODO
-            // properties = findPropertyByRegex(REPORT_ATTRIBUTE_REGEX, rawText.toString());
-
-            tmpLineCounter++;
+            Map<String, List<Double>> textLinesWithCharacteristics = fileManager.findCharacteristicsInTextByRegex(REPORT_ATTRIBUTE_NAME_REGEX, lineOfText);
+            characteristic = fileManager.readCharacteristics(textLinesWithCharacteristics);
+            if(!characteristic.name().equals("")){
+                characteristicList.add(characteristic);
+            }
         }
-
-        return null;
+        characteristicList = characteristicList.stream()
+                .filter(e->e!=null).toList();
+        return characteristicList;
     }
 
-    @Override
-     public ReportHeader extractHeader(StringBuilder fileText) throws IOException {
+/*
+    public ReportHeader extractHeader() throws IOException {
+        StringBuilder fileText = getRawReportText();
         String componentName="";
         String date="";
         String drawingNumber="";
@@ -120,28 +110,6 @@ public class CoordinateMeasuringMachineReport implements MeasurementReport, Meas
         return new ReportHeader(componentName, date, drawingNumber, partNumber1, partNumber2, programName, operatorName);
     }
 
-    private static  ArrayList<String> findPropertyByRegex(String propRegex, String inStr){
-        Pattern pattern1 = Pattern.compile(propRegex);
-        Matcher matcher1 = pattern1.matcher(inStr);
-        ArrayList<String> properties = new ArrayList<String>();
-        while(matcher1.find())
-        {
-            if(properties.contains(matcher1.group())){
+    */
 
-            }else{
-                properties.add(matcher1.group());
-            }
-        }
-        return properties;
-    }
-
-    @Override
-    public ReportHeader getReportHeader() {
-        return reportHeader;
-    }
-
-    @Override
-    public ArrayList<ReportAttribute> getReportAttributesList() {
-        return reportAttributesList;
-    }
 }

@@ -69,8 +69,6 @@ public class Return {
             return this;
         }
 
-
-        //TODO na generic
         public ResultBuilder addArrayList(ArrayList<String> objectsArrayList) {
             this.strValue = strValue;
             return this;
