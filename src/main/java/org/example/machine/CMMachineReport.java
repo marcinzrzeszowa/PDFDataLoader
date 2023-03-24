@@ -7,46 +7,44 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CoordinateMeasuringMachineReport extends MachineReport {
-
-    /*
-    Extracts attributes and parameters from text
-
-    *([pP]\d+(_\d+)*(_[A-Za-z0-9]+)?)|([pP]\d+_[A-Za-z]+(_[A-Za-z0-9]+)?)|([pP][A-Za-z0-9]+_[A-Za-z0-9]+(_[A-Za-z0-9]+)*(_[A-Za-z]+)?)
-    *
-    * p1 p12 p321 p2_ p32_ p342_ p2_1 p32_23 p342_33 p2_12 p32_23 p342_44 p2_12 p32_23 p342_44 p1_1_3 p13_32_88 p123_323_881 p1_A p23_AB P234_ABC p2_h22mm p22_h2mm p232_h2.52mm p1_ref_ABC p12_ref_DA p133_ref_ABC
-    *
-    ([pP]\d+(_\d+)*(_[A-Za-z0-9]+)?) - dopasowuje parametry zaczynające się od litery "p" lub "P", a następnie jednej lub więcej cyfr, z opcjonalnymi grupami podkreślenia i cyfr lub liter
-     | - oznacza alternatywę, dopasuje alternatywne wzorce
-     ([pP]\d+_[A-Za-z]+(_[A-Za-z0-9]+)?) - dopasowuje parametry zaczynające się od litery "p" lub "P", a następnie jednej lub więcej cyfr, po których następuje podkreślenie, a następnie jedna lub więcej liter, z opcjonalnymi grupami podkreślenia i cyfr lub liter
-     | - oznacza alternatywę, dopasuje alternatywne wzorce
-     ([pP][A-Za-z0-9]+_[A-Za-z0-9]+(_[A-Za-z0-9]+)*(_[A-Za-z]+)?) - dopasowuje parametry zaczynające się od litery "p" lub "P", a następnie jednej lub więcej liter lub cyfr, po których następuje podkreślenie, a następnie jedna lub więcej liter lub cyfr, z opcjonalnymi grupami podkreślenia i liter lub cyfr oraz z dodatkową grupą podkreślenia i liter na końcu
-     * */
-    private static final String REPORT_ATTRIBUTE_NAME_REGEX = "([pP]\\d+(_\\d+)*(_[A-Za-z0-9]+)?)|([pP]\\d+_[A-Za-z]+(_[A-Za-z0-9]+)?)|([pP][A-Za-z0-9]+_[A-Za-z0-9]+(_[A-Za-z0-9]+)*(_[A-Za-z]+)?)";
+public class CMMachineReport extends MachineReport {
 
 
     @Override
-    public List<ReportCharacteristic> extractReportCharacteristics(StringBuilder file, InputFileManager fileManager) throws IOException {
-        List<ReportCharacteristic> characteristicList = new ArrayList<>();
+    public List<ReportCharacteristic> extractReportCharacteristics(StringBuilder file, InputFileManager objFileManager) throws IOException {
+
+        List<ReportCharacteristic> characteristicsList = new ArrayList<>();
+        Map<String, List<Double>> characteristicMap = new HashMap<>();
         ReportCharacteristic characteristic;
-        String lineOfText;
+        String lineOfText, characteristicName;
 
         BufferedReader bufReader = new BufferedReader(new StringReader(file.toString()));
+
+
+        //TODO wydzielic 2 metody wyzej i uruchamic jak w strategii
         while( (lineOfText=bufReader.readLine()) != null )
         {
-            Map<String, List<Double>> textLinesWithCharacteristics = fileManager.findCharacteristicsInTextByRegex(REPORT_ATTRIBUTE_NAME_REGEX, lineOfText);
-            characteristic = fileManager.readCharacteristics(textLinesWithCharacteristics);
-            if(!characteristic.name().equals("")){
-                characteristicList.add(characteristic);
+            characteristicName = objFileManager.findCharacteristicByRegex(characteristicValidator, lineOfText);
+            if(!characteristicName.equals("")){
+                characteristicMap = objFileManager.readCharacteristicLine(characteristicValidator,lineOfText);
+                characteristic = objFileManager.createCharacteristic(characteristicMap);
+                characteristicsList.add(characteristic);
             }
         }
-        characteristicList = characteristicList.stream()
+        characteristicsList = characteristicsList.stream()
                 .filter(e->e!=null).toList();
-        return characteristicList;
+        return characteristicsList;
     }
+
+    @Override
+    protected CharacteristicValidator setClassCharacteristicValidator() {
+        return (CharacteristicValidator) new CMMachineCharacteristicValidator();
+    }
+
 
 /*
     public ReportHeader extractHeader() throws IOException {

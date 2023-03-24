@@ -1,6 +1,5 @@
 package org.example.files;
-import com.itextpdf.text.exceptions.InvalidPdfException;
-import com.itextpdf.text.pdf.PdfReader;
+import org.example.machine.CharacteristicValidator;
 import org.example.machine.MachineReport;
 import org.example.report.ReportCharacteristic;
 
@@ -25,25 +24,39 @@ public class InputFileManager extends FileManager{
         return instance;
     }
 
-    public List<ReportCharacteristic> parsePDF(String filePath, MachineReport machine){
-        List<ReportCharacteristic> reportCharacteristicList = null;
+    private StringBuilder parseFile(String filePath){
         StringBuilder parsedText = new StringBuilder();
         if(isEditable(filePath)) {
-                parsedText = pdfFile.parseFile(filePath);
+            parsedText = pdfFile.parseFile(filePath);
+        }
+        return parsedText;
+    }
+
+    public List<ReportCharacteristic> createCharacteristic(String filePath, MachineReport machine){
+        List<ReportCharacteristic> reportCharacteristicList = null;
+        StringBuilder inputText  = parseFile(filePath);
             try {
-                reportCharacteristicList = machine.extractReportCharacteristics(parsedText, this);
+                reportCharacteristicList = machine.extractReportCharacteristics(inputText, this);
+                //TODO dodac 2 metody z impl jak strategia
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }else{
-            System.out.println("You can't edit the file");
-        }
         return reportCharacteristicList;
     }
 
+    public String findCharacteristicByRegex(CharacteristicValidator validator, String lineOfText){
+        Pattern pattern1 = Pattern.compile(validator.getNameRegex());
+        Matcher matcher1 = pattern1.matcher(lineOfText);
+        String name="";
+        while(matcher1.find())
+        {
+            name =(matcher1.group());
+        }
+        return name;
+    }
 
-    public Map<String,List<Double>> findCharacteristicsInTextByRegex(String propRegex, String lineOfText){
-        Pattern pattern1 = Pattern.compile(propRegex);
+    public Map<String,List<Double>> readCharacteristicLine(CharacteristicValidator validator, String lineOfText){
+        Pattern pattern1 = Pattern.compile(validator.getNameRegex());
         Matcher matcher1 = pattern1.matcher(lineOfText);
         String name;
         List<Double> preparedValues;
@@ -57,7 +70,7 @@ public class InputFileManager extends FileManager{
         return matchedTextLine;
     }
 
-    public static ReportCharacteristic readCharacteristics(Map<String,List<Double>>dataMap) {
+    public static ReportCharacteristic createCharacteristic(Map<String,List<Double>>dataMap) {
         final int ACTUAL_VALUE_INDEX = 0;
         final int NOMINAL_VALUE_INDEX = 1;
         final int DIFFERENCE_VALUE_INDEX = 2;
@@ -72,6 +85,7 @@ public class InputFileManager extends FileManager{
         return characteristic ;
     }
 
+    //Change String values to Double
     private List<Double> prepareValues(String lineOfText) {
 
         //TODO format 0,00
@@ -81,7 +95,7 @@ public class InputFileManager extends FileManager{
         final int NUMBER_OF_VALUES_FOR_CHARACTERISTIC = 3;
         final String VALUES_SEPARATOR = "\s+";
 
-        lineOfText.replace(",",".");
+        lineOfText = lineOfText.replace(",",".");
         List<String> strSplit = Arrays.asList(lineOfText.split(VALUES_SEPARATOR));
 
 

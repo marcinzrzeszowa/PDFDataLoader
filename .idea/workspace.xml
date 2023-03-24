@@ -4,31 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Starting commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/files/FileManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/files/InputFileManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFileManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/files/PDFFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/files/TXTFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/files/XLSXFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/OpticalMeasuringMachineReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/report/ReportCharacteristic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/report/ReportFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/report/ReportType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/CMM_1.pdf" afterDir="false" />
+    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Change relations and structure of project. Add simple write txt and xlsx file">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineCharacteristicValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/CharacteristicValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DataReader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/CoordinateMeasuringMachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/CoordinateMeasuringMachineReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/MeasurementReport.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/MeasurementReportMethods.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/ReportAttribute.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/ReportHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/report/ReportHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/Return.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/Return.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/InputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/InputFileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/XLSXFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/XLSXFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CoordinateMeasuringMachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/OpticalMeasuringMachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/OMMachineReport.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +26,8 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -87,6 +73,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.example.machine" />
       <recent name="org.example.report" />
       <recent name="org.example.structure" />
     </key>
@@ -169,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678656491861</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Change relations and structure of project. Add simple write txt and xlsx file">
+      <created>1679572733780</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679572733780</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,7 +179,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Starting commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting commit" />
+    <MESSAGE value="Change relations and structure of project. Add simple write txt and xlsx file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change relations and structure of project. Add simple write txt and xlsx file" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PDFDataLoader$Main.ic" NAME="Main Coverage Results" MODIFIED="1678273961230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
