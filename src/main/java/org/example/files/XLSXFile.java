@@ -51,7 +51,18 @@ class XLSXFile extends OutputFile{
         // creating a row object
         XSSFRow row;
 
-        int rowId= 0;
+
+        row = spreadsheet.createRow(0);
+        Cell c1 = row.createCell(0);
+        c1.setCellValue("Cecha");
+        Cell c2 = row.createCell(1);
+        c2.setCellValue("Rzeczywista");
+        Cell c3 = row.createCell(2);
+        c3.setCellValue("Nominalna");
+        Cell c4 = row.createCell(3);
+        c4.setCellValue("Różnica");
+
+        int rowId= 1;
         for(ReportCharacteristic ra: characteristicList){
             row = spreadsheet.createRow(rowId++);
             int cellId= 0;

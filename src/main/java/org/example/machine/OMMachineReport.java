@@ -8,12 +8,7 @@ import java.util.List;
 public class OMMachineReport extends MachineReport {
 
     @Override
-    public List<ReportCharacteristic> extractReportCharacteristics(StringBuilder file, InputFileManager fileManager) {
-     return null;
-    }
-
-    @Override
-    protected CharacteristicValidator setClassCharacteristicValidator() {
+    public String getStringCharacteristicNameRegex() {
         return null;
     }
 }

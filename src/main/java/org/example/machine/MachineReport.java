@@ -5,37 +5,38 @@ import org.example.files.OutputFileManager;
 import org.example.report.ReportCharacteristic;
 import org.example.report.ReportFormat;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MachineReport{
+public abstract class MachineReport implements CharacteristicValidator{
     private InputFileManager inputFileManager;
     private OutputFileManager outputFileManager;
     private List<ReportCharacteristic> reportCharacteristicList;
-
-    protected CharacteristicValidator characteristicValidator;
 
     public MachineReport(){
         this.inputFileManager = InputFileManager.getInstance();
         this.outputFileManager = OutputFileManager.getInstance();
         this.reportCharacteristicList = new ArrayList<>();
-        this.characteristicValidator = setClassCharacteristicValidator();
     }
 
+    //Template method
     public final void createReport(String filePath, ReportFormat reportFormat){
-            reportCharacteristicList = parseFile(filePath);
+            reportCharacteristicList = createCharacteristics(filePath);
             writeReport(filePath, reportFormat, reportCharacteristicList);
     }
 
-    //Extract characteristics with values from parsed file and save to field List<ReportCharacteristic>
-    public abstract List<ReportCharacteristic> extractReportCharacteristics(StringBuilder file, InputFileManager fileManager) throws IOException;
+    private List<ReportCharacteristic> createCharacteristics(String parsedFile){
+        return inputFileManager.createCharacteristics(parsedFile, this);
+    }
 
-    //Set new CharacteristicValidator implementation class with regex rules for characteristics
-    protected abstract CharacteristicValidator setClassCharacteristicValidator();
-
-    private List<ReportCharacteristic> parseFile(String path){
-        return inputFileManager.createCharacteristic(path, this);
+    public static MachineReport MachineInstance(MachineType type){
+        switch (type){
+            case COORDINATE:
+                return new CMMachineReport();
+            case OPTICAL:
+                return new OMMachineReport();
+        }
+        return null;
     }
 
     private void writeReport(String filePath, ReportFormat reportFormat, List<ReportCharacteristic> characteristicList){
@@ -48,6 +49,9 @@ public abstract class MachineReport{
                 break;
             case RAW_TXT:
                 outputFileManager.writeRawTXTFile(filePath);
+                break;
+
         }
     }
+
 }

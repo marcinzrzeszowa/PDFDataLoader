@@ -1,51 +1,55 @@
 package org.example.files;
-import org.example.machine.CharacteristicValidator;
 import org.example.machine.MachineReport;
 import org.example.report.ReportCharacteristic;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class InputFileManager extends FileManager{
-    private PDFFile pdfFile;
 
-    private static InputFileManager instance = new InputFileManager(new PDFFile());
-
-    private InputFileManager(PDFFile pdfFile) {
-        this.pdfFile = pdfFile;
-    }
-
+    private static InputFileManager instance = new InputFileManager();
     public static InputFileManager getInstance(){
         return instance;
     }
 
-    private StringBuilder parseFile(String filePath){
-        StringBuilder parsedText = new StringBuilder();
-        if(isEditable(filePath)) {
-            parsedText = pdfFile.parseFile(filePath);
-        }
-        return parsedText;
-    }
+    public List<ReportCharacteristic> createCharacteristics(String filePath, MachineReport machine){
+        StringBuilder parsedFile = parseFile(filePath);
 
-    public List<ReportCharacteristic> createCharacteristic(String filePath, MachineReport machine){
-        List<ReportCharacteristic> reportCharacteristicList = null;
-        StringBuilder inputText  = parseFile(filePath);
+        Map<String, List<Double>> characteristicMap = new HashMap<>();
+        ReportCharacteristic characteristic;
+        String lineOfText, characteristicName;
+        List<ReportCharacteristic> characteristicsList = new ArrayList<>();
+        BufferedReader bufReader = new BufferedReader(new StringReader(parsedFile.toString()));
+
+        while(true)
+        {
             try {
-                reportCharacteristicList = machine.extractReportCharacteristics(inputText, this);
-                //TODO dodac 2 metody z impl jak strategia
+                if (!((lineOfText=bufReader.readLine()) != null)) break;
+                characteristicName = findCharacteristicByRegex(machine.getStringCharacteristicNameRegex(), lineOfText);
+                if(!characteristicName.equals("")){
+                    characteristicMap = readCharacteristicLine(machine.getStringCharacteristicNameRegex(),lineOfText);
+                    characteristic = createCharacteristics(characteristicMap);
+                    characteristicsList.add(characteristic);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        return reportCharacteristicList;
+        }
+        characteristicsList = characteristicsList.stream()
+                .filter(e->e!=null).toList();
+        return characteristicsList;
     }
 
-    public String findCharacteristicByRegex(CharacteristicValidator validator, String lineOfText){
-        Pattern pattern1 = Pattern.compile(validator.getNameRegex());
+    private String findCharacteristicByRegex(String validator, String lineOfText){
+        Pattern pattern1 = Pattern.compile(validator);
         Matcher matcher1 = pattern1.matcher(lineOfText);
         String name="";
         while(matcher1.find())
@@ -55,8 +59,8 @@ public class InputFileManager extends FileManager{
         return name;
     }
 
-    public Map<String,List<Double>> readCharacteristicLine(CharacteristicValidator validator, String lineOfText){
-        Pattern pattern1 = Pattern.compile(validator.getNameRegex());
+    private Map<String,List<Double>> readCharacteristicLine(String validator, String lineOfText){
+        Pattern pattern1 = Pattern.compile(validator);
         Matcher matcher1 = pattern1.matcher(lineOfText);
         String name;
         List<Double> preparedValues;
@@ -70,7 +74,7 @@ public class InputFileManager extends FileManager{
         return matchedTextLine;
     }
 
-    public static ReportCharacteristic createCharacteristic(Map<String,List<Double>>dataMap) {
+    public static ReportCharacteristic createCharacteristics(Map<String,List<Double>>dataMap) {
         final int ACTUAL_VALUE_INDEX = 0;
         final int NOMINAL_VALUE_INDEX = 1;
         final int DIFFERENCE_VALUE_INDEX = 2;
@@ -80,7 +84,7 @@ public class InputFileManager extends FileManager{
             characteristic = new ReportCharacteristic( k,
                     dataMap.get(k).get(ACTUAL_VALUE_INDEX),
                     dataMap.get(k).get(NOMINAL_VALUE_INDEX),
-                    dataMap.get(k).get(DIFFERENCE_VALUE_INDEX));
+                    dataMap.get(k).get(ACTUAL_VALUE_INDEX) - dataMap.get(k).get(NOMINAL_VALUE_INDEX));
         }
         return characteristic ;
     }
@@ -88,22 +92,28 @@ public class InputFileManager extends FileManager{
     //Change String values to Double
     private List<Double> prepareValues(String lineOfText) {
 
-        //TODO format 0,00
-        final DecimalFormat df = new DecimalFormat("0.000");
-        df.setRoundingMode(RoundingMode.UP);
-
         final int NUMBER_OF_VALUES_FOR_CHARACTERISTIC = 3;
         final String VALUES_SEPARATOR = "\s+";
-
-        lineOfText = lineOfText.replace(",",".");
         List<String> strSplit = Arrays.asList(lineOfText.split(VALUES_SEPARATOR));
 
-
-        List<Double> parsedVList = strSplit.stream()
+        List<Double> parsedVList = strSplit
+                .stream()
                 .filter(e->isNumeric(e))
                 .map(e->Double.valueOf(e))
+                .map(e->numberParser(e))
                 .limit(NUMBER_OF_VALUES_FOR_CHARACTERISTIC)
                 .collect(Collectors.toList());
         return parsedVList;
     }
+
+    private static Double numberParser(Double inputNr) {
+        NumberFormat formatter = new DecimalFormat("0.000");
+        formatter.setRoundingMode(RoundingMode.HALF_UP);
+        String strNr = formatter.format(inputNr);
+        strNr = strNr.replaceAll(",",".");
+        Double nr = Double.parseDouble(strNr);
+        return nr;
+    }
+
+
 }

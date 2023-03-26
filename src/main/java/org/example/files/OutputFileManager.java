@@ -7,22 +7,14 @@ import java.util.List;
 
 public class OutputFileManager extends FileManager {
     private OutputFile outputFile;
-    private TXTFile textFile;
-    private XLSXFile excelFile;
-
     private static OutputFileManager instance = new OutputFileManager();
-
-    private OutputFileManager() {
-       this.textFile = new TXTFile();
-       this.excelFile = new XLSXFile();
-    }
 
     public static OutputFileManager getInstance(){
         return instance;
     }
 
     public void writeTXTReport(String filePath, List<ReportCharacteristic> characteristicList) {
-        outputFile = textFile;
+        outputFile = new TXTFile();
         try {
             outputFile.saveFile(filePath, characteristicList);
         } catch (IOException e) {
@@ -30,7 +22,7 @@ public class OutputFileManager extends FileManager {
         }
     }
     public void writeXLSXReport(String filePath, List<ReportCharacteristic> characteristicList) {
-        outputFile = excelFile;
+        outputFile = new XLSXFile();
         try {
             outputFile.saveFile(filePath, characteristicList);
         } catch (IOException e) {
@@ -39,7 +31,13 @@ public class OutputFileManager extends FileManager {
     }
 
     public void writeRawTXTFile(String filePath) {
-        //TODO save
-        //textFile.readRawFile(filePath);
+        outputFile = new TXTFile();
+        try{
+            StringBuilder parsedText  =parseFile(filePath);
+            outputFile.saveRawFile(filePath, parsedText);
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+
     }
 }

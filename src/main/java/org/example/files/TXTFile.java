@@ -11,24 +11,22 @@ class TXTFile extends OutputFile {
         this.extension = ".txt";
     }
 
-    public String readRawFile(String path){
-        StringBuilder rawText = new StringBuilder();
-        StringBuilder sb = new StringBuilder();
-        BufferedReader bufReader = new BufferedReader(new StringReader(rawText.toString()));
-        String line=null;
-        int tmpLineCounter= 0;
-        while(true)
-        {
-            try {
-                if (!((line=bufReader.readLine()) != null)) break;
-                sb.append(line).append("\n");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return sb.toString();
-    }
+    @Override
+    protected void saveFile(String filePath, List<ReportCharacteristic> characteristicList) throws IOException {
 
+        File outFile = newFile(filePath);
+        String content = createCSVFileFormat(characteristicList);
+
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter( new FileWriter(outFile.getAbsolutePath().toString()));
+            bw.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(bw != null) bw.close();
+        }
+    }
 
     private String createCSVFileFormat(List<ReportCharacteristic> reportAttributesList ){
         StringBuilder sb = new StringBuilder();
@@ -43,20 +41,4 @@ class TXTFile extends OutputFile {
         return sb.toString();
     }
 
-    @Override
-    protected void saveFile(String filePath, List<ReportCharacteristic> characteristicList) throws IOException {
-
-        File outFile = newFile(filePath);
-        String content = createCSVFileFormat(characteristicList).toString();
-
-        BufferedWriter bw = null;
-        try {
-            bw = new BufferedWriter( new FileWriter(outFile.getAbsolutePath().toString()));
-            bw.write(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(bw != null) bw.close();
-        }
-    }
 }

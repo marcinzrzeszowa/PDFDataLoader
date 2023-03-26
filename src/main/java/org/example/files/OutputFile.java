@@ -2,13 +2,13 @@ package org.example.files;
 
 import org.example.report.ReportCharacteristic;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 abstract class OutputFile {
     protected String extension;
     private final String INPUT_FILE_EXTENSION =".pdf";
+
 
     protected abstract void saveFile(String filePath, List<ReportCharacteristic> characteristicList) throws IOException;
 
@@ -28,4 +28,18 @@ abstract class OutputFile {
 
         return new File(outFileLocation);
     }
+
+    public void saveRawFile(String path, StringBuilder contentText) throws IOException {
+        File outFile = newFile(path);
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter( new FileWriter(outFile.getAbsolutePath().toString()));
+            bw.write(contentText.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(bw != null) bw.close();
+        }
+    }
+
 }

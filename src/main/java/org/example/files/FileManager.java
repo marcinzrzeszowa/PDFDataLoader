@@ -5,6 +5,12 @@ import com.itextpdf.text.pdf.PdfReader;
 
 abstract class FileManager {
 
+    private PDFFile pdfFile;
+
+    public FileManager() {
+        this.pdfFile = new PDFFile();
+    }
+
     protected static boolean isEditable(String filePath) {
         try {
             PdfReader reader = new PdfReader(filePath);
@@ -18,6 +24,15 @@ abstract class FileManager {
         }
         return false;
     }
+
+    protected StringBuilder parseFile(String filePath){
+        StringBuilder parsedText = new StringBuilder();
+        if(isEditable(filePath)) {
+            parsedText = pdfFile.parseFile(filePath);
+        }
+        return parsedText;
+    }
+
 
     protected boolean isNumeric(String str) {
         String IS_NUMBER_REGEX = "-?\\d+(\\.\\d+)?";
