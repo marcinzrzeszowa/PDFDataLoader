@@ -1,4 +1,4 @@
-package org.example.files;
+package org.example.repository;
 
 import org.example.report.ReportCharacteristic;
 

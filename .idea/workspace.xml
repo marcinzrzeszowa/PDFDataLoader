@@ -4,22 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Change relations and structure of project.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/UIWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logo100.png" afterDir="false" />
+    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Add basic UI">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/ActionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/RepositoryActionObserver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/PDFFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/CMMachineService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/MachineServiceRequirements.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/MachineType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OMMachineService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIFileChooser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UILabel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIRadioButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/architektura" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cc1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/InputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/InputFileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/TXTFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/TXTFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/XLSXFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/files/XLSXFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineCharacteristicValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineCharacteristicValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CharacteristicValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/CharacteristicValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/OMMachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machine/OMMachineReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/FileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/InputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/PDFFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/TXTFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/TXTFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/XLSXFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/XLSXFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineCharacteristicValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CharacteristicValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/MachineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/OMMachineReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/report/ReportFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/ApplicationLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/ApplicationLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/Return.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/lib/Return.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/UIWindow.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +55,8 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -78,6 +102,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.example.controller" />
+      <recent name="org.example.ui" />
       <recent name="org.example.machine" />
       <recent name="org.example.report" />
       <recent name="org.example.structure" />
@@ -92,11 +118,11 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="InputFileManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.files.InputFileManager" />
+      <option name="MAIN_CLASS_NAME" value="org.example.repository.InputFileManager" />
       <module name="PDFDataLoader" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.files.*" />
+          <option name="PATTERN" value="org.example.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,7 +135,7 @@
       <module name="PDFDataLoader" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.files.*" />
+          <option name="PATTERN" value="org.example.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -118,11 +144,11 @@
       </method>
     </configuration>
     <configuration name="XLSXFile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.files.XLSXFile" />
+      <option name="MAIN_CLASS_NAME" value="org.example.repository.XLSXFile" />
       <module name="PDFDataLoader" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.files.*" />
+          <option name="PATTERN" value="org.example.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -175,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679662498045</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add basic UI">
+      <created>1679871298379</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679871298379</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -193,7 +226,8 @@
     <MESSAGE value="Starting commit" />
     <MESSAGE value="Change relations and structure of project. Add simple write txt and xlsx file" />
     <MESSAGE value="Change relations and structure of project." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change relations and structure of project." />
+    <MESSAGE value="Add basic UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add basic UI" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PDFDataLoader$Main.ic" NAME="Main Coverage Results" MODIFIED="1678273961230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

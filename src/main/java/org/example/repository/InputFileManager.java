@@ -1,5 +1,5 @@
-package org.example.files;
-import org.example.machine.MachineReport;
+package org.example.repository;
+import org.example.service.MachineService;
 import org.example.report.ReportCharacteristic;
 
 import java.io.BufferedReader;
@@ -14,28 +14,37 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class InputFileManager extends FileManager{
-
     private static InputFileManager instance = new InputFileManager();
+
+    private InputFileManager(){
+    }
+
     public static InputFileManager getInstance(){
         return instance;
     }
 
-    public List<ReportCharacteristic> createCharacteristics(String filePath, MachineReport machine){
-        StringBuilder parsedFile = parseFile(filePath);
+    public List<ReportCharacteristic> createCharacteristics(String filePath, MachineService machine){
+
+
+        //Return parsedFileFragment = parseFileFragment(filePath, startPage, endPage);
+        StringBuilder rawFileText = parseFile(filePath);
+        StringBuilder characteristicsText = extractCharacteristicTextLines(rawFileText , machine.getBeginReportValuesRegex(), machine.getFinishReportValuesRegex());
 
         Map<String, List<Double>> characteristicMap = new HashMap<>();
         ReportCharacteristic characteristic;
         String lineOfText, characteristicName;
         List<ReportCharacteristic> characteristicsList = new ArrayList<>();
-        BufferedReader bufReader = new BufferedReader(new StringReader(parsedFile.toString()));
+        BufferedReader bufReader = new BufferedReader(new StringReader(rawFileText.toString()));
 
         while(true)
         {
             try {
                 if (!((lineOfText=bufReader.readLine()) != null)) break;
-                characteristicName = findCharacteristicByRegex(machine.getStringCharacteristicNameRegex(), lineOfText);
+                //Find characteristic name in text line
+                characteristicName = findCharacteristicByRegex(machine.getCharacteristicNameRegex(), lineOfText);
                 if(!characteristicName.equals("")){
-                    characteristicMap = readCharacteristicLine(machine.getStringCharacteristicNameRegex(),lineOfText);
+                    //Extract values from text by characteristic name regex. Returns it as map of double values
+                    characteristicMap = readCharacteristicLine(machine.getCharacteristicNameRegex(),lineOfText);
                     characteristic = createCharacteristics(characteristicMap);
                     characteristicsList.add(characteristic);
                 }
@@ -46,6 +55,11 @@ public class InputFileManager extends FileManager{
         characteristicsList = characteristicsList.stream()
                 .filter(e->e!=null).toList();
         return characteristicsList;
+    }
+
+    private StringBuilder extractCharacteristicTextLines(StringBuilder rawFileText, String beginReportValuesRegex, String finishReportValuesRegex) {
+        System.out.println();
+        return null;
     }
 
     private String findCharacteristicByRegex(String validator, String lineOfText){
@@ -62,8 +76,8 @@ public class InputFileManager extends FileManager{
     private Map<String,List<Double>> readCharacteristicLine(String validator, String lineOfText){
         Pattern pattern1 = Pattern.compile(validator);
         Matcher matcher1 = pattern1.matcher(lineOfText);
-        String name;
-        List<Double> preparedValues;
+        String name = "";
+        List<Double> preparedValues = null;
         Map<String,List<Double>> matchedTextLine = new HashMap<>();
         while(matcher1.find())
         {
@@ -89,9 +103,8 @@ public class InputFileManager extends FileManager{
         return characteristic ;
     }
 
-    //Change String values to Double
+    //Change text characteristics values in to Double values
     private List<Double> prepareValues(String lineOfText) {
-
         final int NUMBER_OF_VALUES_FOR_CHARACTERISTIC = 3;
         final String VALUES_SEPARATOR = "\s+";
         List<String> strSplit = Arrays.asList(lineOfText.split(VALUES_SEPARATOR));

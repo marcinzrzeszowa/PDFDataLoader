@@ -1,4 +1,4 @@
-package org.example.structure;
+package org.example.structure.lib;
 
 import java.util.ArrayList;
 
@@ -7,9 +7,11 @@ public class Return {
     private boolean valid;
     private int intValue;
     private String strValue;
+    private StringBuilder strBValue;
     private ArrayList<String> strArrayList;
+    private ArrayList<Integer> intArrayList;
 
-    private Return(ResultBuilder builder) {
+    private Return(ReturnBuilder builder) {
         this.message = builder.message;
         this.valid = builder.valid;
         this.intValue = builder.intValue;
@@ -36,15 +38,24 @@ public class Return {
     public ArrayList<String> getStrArrayList() {
         return strArrayList;
     }
+    public StringBuilder getStrBValue() {
+        return strBValue;
+    }
+    public ArrayList<Integer> getIntArrayList() {
+        return intArrayList;
+    }
 
-    public static class ResultBuilder {
+
+    public static class ReturnBuilder {
         private String message;
         private boolean valid;
         private int intValue;
         private String strValue;
-        public ArrayList<String> strArrayList;
+        private StringBuilder strBValue;
+        private ArrayList<String> strArrayList;
+        private ArrayList<Integer> intArrayList;
 
-        public ResultBuilder(String message, boolean valid) {
+        public ReturnBuilder(String message, boolean valid) {
             String messageTrue = "Valid Result";
             String messageFalse = "No valid Result";
 
@@ -55,22 +66,32 @@ public class Return {
             this.valid = valid;
         }
 
-        public ResultBuilder(boolean valid) {
+        public ReturnBuilder(boolean valid) {
             this("", valid);
         }
 
-        public ResultBuilder addInt(int intValue) {
+        public ReturnBuilder addInt(int intValue) {
             this.intValue = intValue;
             return this;
         }
 
-        public ResultBuilder addStr(String stringValue) {
+        public ReturnBuilder addStr(String stringValue) {
             this.strValue = stringValue;
             return this;
         }
 
-        public ResultBuilder addArrayList(ArrayList<String> objectsArrayList) {
-            this.strValue = strValue;
+        public ReturnBuilder addStrB(StringBuilder strBValue) {
+            this.strBValue = strBValue;
+            return this;
+        }
+
+        public ReturnBuilder addStrArrayList(ArrayList<String> objectsArrayList) {
+            this.strArrayList = objectsArrayList;
+            return this;
+        }
+
+        public ReturnBuilder addIntArrayList(ArrayList<Integer> objectsArrayList) {
+            this.intArrayList = objectsArrayList;
             return this;
         }
 

@@ -1,27 +1,28 @@
-package org.example.machine;
+package org.example.service;
 
-import org.example.files.InputFileManager;
-import org.example.files.OutputFileManager;
+import org.example.repository.InputFileManager;
+import org.example.repository.OutputFileManager;
 import org.example.report.ReportCharacteristic;
 import org.example.report.ReportFormat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MachineReport implements CharacteristicValidator{
+public abstract class MachineService implements MachineServiceRequirements {
     private InputFileManager inputFileManager;
     private OutputFileManager outputFileManager;
     private List<ReportCharacteristic> reportCharacteristicList;
 
-    public MachineReport(){
+    public MachineService(){
         this.inputFileManager = InputFileManager.getInstance();
         this.outputFileManager = OutputFileManager.getInstance();
         this.reportCharacteristicList = new ArrayList<>();
     }
 
-    //Template method
     public final void createReport(String filePath, ReportFormat reportFormat){
-            reportCharacteristicList = createCharacteristics(filePath);
+            if(!reportFormat.equals(ReportFormat.RAW_TEXT)){
+                reportCharacteristicList = createCharacteristics(filePath);
+            }
             writeReport(filePath, reportFormat, reportCharacteristicList);
     }
 
@@ -29,28 +30,27 @@ public abstract class MachineReport implements CharacteristicValidator{
         return inputFileManager.createCharacteristics(parsedFile, this);
     }
 
-    public static MachineReport MachineInstance(MachineType type){
+    public static MachineService MachineInstance(MachineType type){
         switch (type){
             case COORDINATE:
-                return new CMMachineReport();
+                return new CMMachineService();
             case OPTICAL:
-                return new OMMachineReport();
+                return new OMMachineService();
         }
         return null;
     }
 
     private void writeReport(String filePath, ReportFormat reportFormat, List<ReportCharacteristic> characteristicList){
         switch (reportFormat){
-            case TXT:
+            case TEXT:
                 outputFileManager.writeTXTReport(filePath, characteristicList);
                 break;
             case EXCEL:
                 outputFileManager.writeXLSXReport(filePath, characteristicList);
                 break;
-            case RAW_TXT:
+            case RAW_TEXT:
                 outputFileManager.writeRawTXTFile(filePath);
                 break;
-
         }
     }
 

@@ -1,0 +1,9 @@
+kontroler -
+serwis
+repo
+
+    controller – warstwa aplikacji – w warstwie tej wywołujemy odpowiednie serwisy i przetwarzamy parametry wejściowe
+    service – warstwa logiki biznesowej – tutaj zawarta jest cała logika aplikacji
+    repository – warstwa dostępu do danych – w tej warstwie przetwarzamy dane pod kątem zapisu ich do bazy danych
+
+Tak zorganizowany kod działa w następujący sposób: kontroler wywołuje metody z serwisu, serwis wywołuje metody z repozytorium. A takie pakietowanie możemy nazwać pakietowaniem po warstwach (package by layer).

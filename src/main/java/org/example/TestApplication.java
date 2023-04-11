@@ -1,14 +1,8 @@
 package org.example;
 
-import org.example.machine.CMMachineReport;
-import org.example.machine.MachineReport;
-import org.example.machine.MachineType;
-import org.example.machine.OMMachineReport;
-import org.example.report.*;
 import org.example.structure.*;
-import org.example.ui.UIWindow;
-
-import java.io.IOException;
+import org.example.structure.lib.Return;
+import org.example.view.UIWindow;
 
 
 public class TestApplication implements Application {
@@ -21,7 +15,7 @@ public class TestApplication implements Application {
     @Override
     public Return startApplication(){
 
-        return new Return.ResultBuilder(true).build();
+        return new Return.ReturnBuilder(true).build();
     }
 
 

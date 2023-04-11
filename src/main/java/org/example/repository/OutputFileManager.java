@@ -1,4 +1,4 @@
-package org.example.files;
+package org.example.repository;
 
 import org.example.report.ReportCharacteristic;
 
@@ -8,6 +8,9 @@ import java.util.List;
 public class OutputFileManager extends FileManager {
     private OutputFile outputFile;
     private static OutputFileManager instance = new OutputFileManager();
+
+    private OutputFileManager() {
+    }
 
     public static OutputFileManager getInstance(){
         return instance;
@@ -33,11 +36,10 @@ public class OutputFileManager extends FileManager {
     public void writeRawTXTFile(String filePath) {
         outputFile = new TXTFile();
         try{
-            StringBuilder parsedText  =parseFile(filePath);
+            StringBuilder parsedText= parseFile(filePath);
             outputFile.saveRawFile(filePath, parsedText);
         }catch (IOException e){
             throw new RuntimeException(e);
         }
-
     }
 }

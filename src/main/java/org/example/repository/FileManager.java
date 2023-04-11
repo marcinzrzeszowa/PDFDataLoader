@@ -1,4 +1,4 @@
-package org.example.files;
+package org.example.repository;
 
 import com.itextpdf.text.exceptions.InvalidPdfException;
 import com.itextpdf.text.pdf.PdfReader;
@@ -32,6 +32,16 @@ abstract class FileManager {
         }
         return parsedText;
     }
+
+    /*
+    protected Return parseFileFragment(String filePath, int startPage, int endPage){
+        Return returnValue = new Return.ReturnBuilder(false).build();
+        if(isEditable(filePath)) {
+            returnValue = pdfFile.readFileFragment(filePath, startPage, endPage);
+        }
+        return returnValue;
+    }
+    */
 
 
     protected boolean isNumeric(String str) {
