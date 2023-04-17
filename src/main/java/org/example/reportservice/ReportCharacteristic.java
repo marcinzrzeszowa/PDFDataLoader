@@ -1,4 +1,4 @@
-package org.example.report;
+package org.example.reportservice;
 
 public record ReportCharacteristic(String name, Double actual, Double nominal, Double difference ) {
 

@@ -6,8 +6,13 @@ import org.example.structure.lib.Return;
 
 import java.io.IOException;
 
-class PDFFile {
+class PDFFile extends InputFile {
 
+    public PDFFile() {
+        this.extension = ".pdf";
+    }
+
+    @Override
     public StringBuilder parseFile(String filePath){
         StringBuilder sb = new StringBuilder();
         try {

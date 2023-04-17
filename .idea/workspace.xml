@@ -4,46 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Add basic UI">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/ActionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/RepositoryActionObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/PDFFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/CMMachineService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/MachineServiceRequirements.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/MachineType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OMMachineService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIFileChooser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UILabel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIRadioButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/architektura" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cc1.jpg" afterDir="false" />
+    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Change to Layer Architecture">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/MMachine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/Machine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileExtractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/m1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/InputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/OutputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/PDFFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/TXTFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/TXTFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/files/XLSXFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/XLSXFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineCharacteristicValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CMMachineReport.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/CharacteristicValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/MachineService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/MachineType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/machine/OMMachineReport.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/report/ReportFormat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/ApplicationLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/ApplicationLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/Return.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/lib/Return.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/UIWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/ActionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/RepositoryActionObserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportCharacteristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportCharacteristic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportFormat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/FileExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFileExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/PDFFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/PDFFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/TXTFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/TXTFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/XLSXFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/XLSXFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/CMMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/CMMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/MachineService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/MachineServiceRequirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/MachineRequirements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/MachineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/MachineType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/OMMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/OMMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIFileChooser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,16 +88,17 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/Programowanie/Projekty/PDFDataLoader/src/main/resources&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.example.view" />
       <recent name="org.example.controller" />
+      <recent name="org.example.repository" />
+      <recent name="org.example.machineservice" />
       <recent name="org.example.ui" />
-      <recent name="org.example.machine" />
-      <recent name="org.example.report" />
-      <recent name="org.example.structure" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Programowanie\Projekty\PDFDataLoader\src\main\resources" />
@@ -117,8 +109,8 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="InputFileManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.repository.InputFileManager" />
+    <configuration name="InputFileExtractor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.repository.InputFileExtractor" />
       <module name="PDFDataLoader" />
       <extension name="coverage">
         <pattern>
@@ -160,7 +152,7 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.XLSXFile" />
-        <item itemvalue="Application.InputFileManager" />
+        <item itemvalue="Application.InputFileExtractor" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679871298379</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Change to Layer Architecture">
+      <created>1681244221432</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681244221432</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,7 +226,8 @@
     <MESSAGE value="Change relations and structure of project. Add simple write txt and xlsx file" />
     <MESSAGE value="Change relations and structure of project." />
     <MESSAGE value="Add basic UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add basic UI" />
+    <MESSAGE value="Change to Layer Architecture" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change to Layer Architecture" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PDFDataLoader$Main.ic" NAME="Main Coverage Results" MODIFIED="1678273961230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

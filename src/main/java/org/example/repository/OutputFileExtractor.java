@@ -1,20 +1,22 @@
 package org.example.repository;
 
-import org.example.report.ReportCharacteristic;
+import org.example.controller.Controller;
+import org.example.reportservice.ReportCharacteristic;
 
 import java.io.IOException;
 import java.util.List;
 
-public class OutputFileManager extends FileManager {
+public class OutputFileExtractor extends FileExtractor {
     private OutputFile outputFile;
-    private static OutputFileManager instance = new OutputFileManager();
+    private static OutputFileExtractor instance = new OutputFileExtractor();
 
-    private OutputFileManager() {
+    public OutputFileExtractor() {
     }
 
-    public static OutputFileManager getInstance(){
+    public static OutputFileExtractor getInstance(){
         return instance;
     }
+
 
     public void writeTXTReport(String filePath, List<ReportCharacteristic> characteristicList) {
         outputFile = new TXTFile();
@@ -42,4 +44,7 @@ public class OutputFileManager extends FileManager {
             throw new RuntimeException(e);
         }
     }
+
+
+
 }

@@ -1,7 +1,5 @@
 package org.example.view;
 
-import org.example.controller.ActionController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class UIWindow extends JFrame implements ActionListener {
+public class UIWindow extends JFrame implements ActionListener , ViewActionComponent {
 
     private static final int UI_WIDTH = 580;
     private static final int UI_HEIGHT = 400;
@@ -47,13 +45,14 @@ public class UIWindow extends JFrame implements ActionListener {
 
     private ButtonGroup machinesButtonGroup, reportsButtonGroup;
 
-    private ViewActionController actionController;
+    private ViewActionController controller;
 
     private String filePath, filePathInfo;
 
 
     public UIWindow() {
-        actionController = new ActionController();
+        setViewController(new org.example.controller.Controller());
+
         panel = new UIPanel(UI_WIDTH, UI_HEIGHT);
 
         this.setLayout(null);
@@ -96,7 +95,7 @@ public class UIWindow extends JFrame implements ActionListener {
         this.add(omMachineRb);
         mMachineRb = new UIRadioButton("Mikroskop",3, X1, Y5, WIDTH1, HEIGHT, this);
         machinesButtonGroup.add(mMachineRb);
-        //add(mMachineRb);
+        add(mMachineRb);
 
         reportsButtonGroup = new ButtonGroup();
         excelReportRb = new UIRadioButton("Plik MS Excel",1, X2, Y3, WIDTH2, HEIGHT, this);
@@ -111,9 +110,14 @@ public class UIWindow extends JFrame implements ActionListener {
 
         addApplicationICO();
 
-
         this.add(panel);
         this.setVisible(true);
+    }
+
+
+    @Override
+    public void setViewController(ViewActionController controller) {
+        this.controller = controller;
     }
 
     private void addApplicationICO() {
@@ -126,13 +130,10 @@ public class UIWindow extends JFrame implements ActionListener {
 
         if(e.getSource() == inputFileButton){
             String DEFAULT_OPEN_DIR = System.getProperty("user.home") + "/Desktop";
-
             JFileChooser fileChooser = new JFileChooser(DEFAULT_OPEN_DIR);
 
-            // Dodanie filtrów, aby użytkownik mógł wybierać tylko pliki z rozszerzeniem txt i pdf
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Pliki tekstowe (*.txt)", "txt");
-            fileChooser.addChoosableFileFilter(filter);
-            filter = new FileNameExtensionFilter("Dokumenty PDF (*.pdf)", "pdf");
+            // Dodanie filtrów, aby użytkownik mógł wybierać tylko pliki z rozszerzeniem pdf
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Dokumenty PDF (*.pdf)", "pdf");
             fileChooser.addChoosableFileFilter(filter);
 
             // Ustawienie domyślnego filtru na filtr dla plików txt
@@ -157,14 +158,19 @@ public class UIWindow extends JFrame implements ActionListener {
     }
 
     private void convertActionEvent() {
+        boolean conversionSuccessfully;
         if(validateUI()){
             String selectedMachine= machinesButtonGroup.getSelection().getActionCommand();
             String selectedReport = reportsButtonGroup.getSelection().getActionCommand();
-            actionController.convertFileAction(filePath,selectedMachine,selectedReport);
-            showConvertFilePathLabel(filePathInfo);
-            showConvertInfoLabel("Plik utworzony w lokalizacji:");
+            conversionSuccessfully = controller.convertFileAction(filePath,selectedMachine,selectedReport);
+            if(conversionSuccessfully){
+                showConvertFilePathLabel(filePathInfo);
+                showConvertInfoLabel("Plik utworzony w lokalizacji:");
+            }else{
+                showConvertInfoLabel("Wybierz odpowiedni format pliku, maszynę i rodzaj raportu");
+            }
         }else{
-            showConvertInfoLabel("Wybierz plik, maszynę i rodzaj raportu");
+            showConvertInfoLabel("Wybierz odpowiedni format pliku, maszynę i rodzaj raportu");
         }
     }
 
@@ -212,4 +218,6 @@ public class UIWindow extends JFrame implements ActionListener {
         String absolutePath = file.getAbsolutePath();
         return new ImageIcon(absolutePath);
     }
+
+
 }

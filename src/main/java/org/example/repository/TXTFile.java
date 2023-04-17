@@ -1,6 +1,6 @@
 package org.example.repository;
 
-import org.example.report.ReportCharacteristic;
+import org.example.reportservice.ReportCharacteristic;
 
 import java.io.*;
 import java.util.List;

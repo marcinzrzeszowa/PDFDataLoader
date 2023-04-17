@@ -1,14 +1,17 @@
 package org.example.repository;
 
-import org.example.report.ReportCharacteristic;
+import org.example.reportservice.ReportCharacteristic;
 
 import java.io.*;
 import java.util.List;
 
 abstract class OutputFile {
     protected String extension;
-    private final String INPUT_FILE_EXTENSION =".pdf";
+    private final String INPUT_FILE_EXTENSION;
 
+    public OutputFile() {
+       INPUT_FILE_EXTENSION = new PDFFile().extension;
+    }
 
     protected abstract void saveFile(String filePath, List<ReportCharacteristic> characteristicList) throws IOException;
 

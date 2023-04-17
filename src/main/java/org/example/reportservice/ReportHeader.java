@@ -1,6 +1,6 @@
-package org.example.report;
+package org.example.reportservice;
 
-public record ReportHeader(String componentName,
+record ReportHeader(String componentName,
                            String date,
                            String drawingNumber,
                            String partNumber1,
