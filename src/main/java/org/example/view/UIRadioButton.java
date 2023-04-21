@@ -7,11 +7,14 @@ public class UIRadioButton extends JRadioButton {
     private int option;
 
 
-    public UIRadioButton(String text, int optionNr, int x, int y, int width, int height, ActionListener actionListener) {
+    public UIRadioButton(String text, int optionNr, int width, int height, ActionListener actionListener) {
         this.option = optionNr;
         this.setActionCommand(String.valueOf(optionNr));
         this.setText(text);
-        this.setBounds(x, y, width, height);
+        this.setBounds(0, 0, width, height);
+        this.setFocusable(false);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
         this.addActionListener(actionListener);
     }
 

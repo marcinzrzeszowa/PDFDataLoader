@@ -23,7 +23,6 @@ public class Controller implements ViewActionController{
     @Override
     public boolean convertFileAction(String inputFilePath, String selectedMachineStrNr, String selectedReportStrNr) {
 
-
        /*
 
        //CMM
@@ -43,7 +42,7 @@ public class Controller implements ViewActionController{
         return true;
         */
 
-/*
+        /*
         report.createReport(
                 "E:\\Programowanie\\Projekty\\PDFDataLoader\\src\\main\\resources\\m1.pdf",
                 ReportFormat.TEXT,
@@ -51,6 +50,7 @@ public class Controller implements ViewActionController{
         return true;*/
 
 
+        //Replace by test data
         machineType = chooseMachineType(selectedMachineStrNr);
         reportFormat = chooseReportFormat(selectedReportStrNr);
 
@@ -60,6 +60,7 @@ public class Controller implements ViewActionController{
             return true;
         }
         return false;
+        //
     }
 
     private ReportFormat chooseReportFormat(String selectedReportStrNr) {
@@ -70,10 +71,15 @@ public class Controller implements ViewActionController{
 
         int machineSelected = Integer.valueOf(selectedReportStrNr);
         switch (machineSelected){
-            case TEXT -> reportFormat = ReportFormat.TEXT;
-            case EXEL -> reportFormat = ReportFormat.EXCEL;
-            case RAW_TEXT -> reportFormat = ReportFormat.RAW_TEXT;
-            default -> reportFormat = ReportFormat.RAW_TEXT;
+            case TEXT:
+                reportFormat = ReportFormat.TEXT;
+                break;
+            case EXEL:
+                reportFormat = ReportFormat.EXCEL;
+                break;
+            default:
+                reportFormat = ReportFormat.RAW_TEXT;
+                break;
         }
         return reportFormat;
     }
@@ -86,9 +92,15 @@ public class Controller implements ViewActionController{
 
         int machineSelected = Integer.valueOf(selectedMachineStrNr);
         switch (machineSelected){
-            case COORDINATE -> machineType = MachineType.COORDINATE;
-            case OPTIC -> machineType = MachineType.OPTICAL;
-            case MICROSCOPE -> machineType = MachineType.MICROSCOPE;
+            case COORDINATE:
+                machineType = MachineType.COORDINATE;
+                break;
+            case OPTIC:
+                machineType = MachineType.OPTICAL;
+                break;
+            case MICROSCOPE:
+                machineType = MachineType.MICROSCOPE;
+                break;
         }
         return machineType;
     }

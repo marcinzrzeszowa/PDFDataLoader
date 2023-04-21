@@ -7,111 +7,188 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class UIWindow extends JFrame implements ActionListener , ViewActionComponent {
 
-    private static final int UI_WIDTH = 580;
+    private ViewActionController controller;
+    private String filePath, filePathInfo;
+
+    //UI
+    private static final int UI_WIDTH = 500;
     private static final int UI_HEIGHT = 400;
-    private int X1 = 50;
-    private int XGAP = 250;
-    private int X2 = X1 + XGAP;
     private int HEIGHT = 30;
     private int HEIGHT2 = 20;
     private int WIDTH4 = 100;
     private int WIDTH1 = 200;
     private int WIDTH2 = 200;
     private int WIDTH3 = 500;
-    private int X_CENTER = UI_WIDTH /2 - WIDTH4/2;
-
-    private int YGAP = 40;
-    private int Y0 = 0;
-    private int Y1 = Y0 + YGAP;
-    private int Y2 = Y1 + YGAP;
-    private int Y3 = Y2 + YGAP;
-    private int Y4 = Y3 + YGAP;
-    private int Y5 = Y4 + YGAP;
-    private int Y6 = Y5 + YGAP;
-    private int Y7 = Y6 + YGAP;
-    private int Y8 = Y7 + 20;
-
-
-    private UIPanel panel;
-    private UILabel inputPathLabel, convertInfoLabel, convertFilePathLabel, machineSelectLabel, reportSelectLabel , spaceLabel;
+    private int XGAP = 1;
+    private int YGAP = 1;
+    private UIPanel jPTop,jPLeft,jPRight, jPBottom  ;
+    private UILabel inputPathLabel, convertInfoLabel, convertFilePathLabel, leftTitleLabel, rightTitleLabel,  spaceLabel;
     private UIRadioButton cmMachineRb, omMachineRb, mMachineRb, excelReportRb, textReportRb, rawTextReportRb;
     private UIButton inputFileButton, convertFileButton;
-
     private ButtonGroup machinesButtonGroup, reportsButtonGroup;
-
-    private ViewActionController controller;
-
-    private String filePath, filePathInfo;
+    private UIMenuBar menuBar;
+    UIMenuWindow helpWindow, aboutWindow;
 
 
     public UIWindow() {
+        //Add Controller to View
         setViewController(new org.example.controller.Controller());
 
-        panel = new UIPanel(UI_WIDTH, UI_HEIGHT);
-
-        this.setLayout(null);
-        //this.getContentPane().setBackground(Color.darkGray);
-        this.setLocationRelativeTo(null);
-        this.setTitle("Konwertuj raport PDF");
+        this.setTitle("Report Converter - Konwertuj raport PDF");
         this.setSize(UI_WIDTH, UI_HEIGHT);
         this.setResizable(false);
         this.setFont(new Font("Verdana",Font.PLAIN,10));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(new BorderLayout(XGAP,YGAP));
+        this.setLocationRelativeTo(null);
+        jPTop = new UIPanel();
+        jPLeft = new UIPanel();
+        jPRight = new UIPanel();
+        jPBottom = new UIPanel();
+        jPTop.setPreferredSize(new Dimension(200,80));
+        jPLeft.setPreferredSize(new Dimension(250,60));
+        jPRight.setPreferredSize(new Dimension(250,60));
+        jPBottom.setPreferredSize(new Dimension(200,100));
 
-        //Buttons
-        inputFileButton = new UIButton("Wybierz plik PDF",X_CENTER,Y1,WIDTH4,HEIGHT,this);
-        panel.add(inputFileButton);
-        convertFileButton = new UIButton("Konwertuj", X_CENTER, Y6, WIDTH4, HEIGHT,this);
-        this.add(convertFileButton);
-
-        // Labels
-       /* spaceLabel = new UILabel( "", X1,Y1, WIDTH3, HEIGHT2, 12, true);
-        panel.add(spaceLabel);*/
-
-        /*machineSelectLabel = new UILabel("Raport z maszyny", X1,Y1, WIDTH1, HEIGHT2, 12, true);
-        panel.add(machineSelectLabel);
-        reportSelectLabel = new UILabel("Zamień na raport", X2,Y1, WIDTH1, HEIGHT2, 12, true);
-        panel.add(reportSelectLabel);*/
-        inputPathLabel = new UILabel("Lokalizacja", X1,Y2, WIDTH3, HEIGHT2);
-        panel.add(inputPathLabel);
-        convertFilePathLabel = new UILabel("Lokalizacja po konwersji",X1,Y8, WIDTH3, HEIGHT2);
-        this.add(convertFilePathLabel);
-        convertInfoLabel = new UILabel("Komunikaty", X1,Y7, WIDTH3, HEIGHT2, true);
-        this.add(convertInfoLabel);
-
-        //Radio Buttons
-        machinesButtonGroup = new ButtonGroup();
-        cmMachineRb = new UIRadioButton("Maszyna Współrzędnościowa",1, X1, Y3, WIDTH1, HEIGHT, this);
-        machinesButtonGroup.add(cmMachineRb);
-        this.add(cmMachineRb);
-        omMachineRb = new UIRadioButton("Maszyna Optyczna",2, X1, Y4, WIDTH1, HEIGHT, this);
-        machinesButtonGroup.add(omMachineRb);
-        this.add(omMachineRb);
-        mMachineRb = new UIRadioButton("Mikroskop",3, X1, Y5, WIDTH1, HEIGHT, this);
-        machinesButtonGroup.add(mMachineRb);
-        add(mMachineRb);
-
-        reportsButtonGroup = new ButtonGroup();
-        excelReportRb = new UIRadioButton("Plik MS Excel",1, X2, Y3, WIDTH2, HEIGHT, this);
-        reportsButtonGroup.add(excelReportRb);
-        this.add(excelReportRb);
-        textReportRb = new UIRadioButton("Plik tekstowy CVS",2,X2, Y4, WIDTH2, HEIGHT, this);
-        reportsButtonGroup.add(textReportRb);
-        this.add(textReportRb);
-        rawTextReportRb = new UIRadioButton("Surowe dane tekstowe",3, X2, Y5, WIDTH2, HEIGHT, this);
-        reportsButtonGroup.add(rawTextReportRb);
-        this.add(rawTextReportRb);
+        Color meniColor = new Color(208, 229, 231);
+        jPTop.setBackground(meniColor);
+        jPLeft.setBackground(Color.WHITE);
+        jPRight.setBackground(Color.WHITE);
+        jPBottom.setBackground(meniColor);
 
         addApplicationICO();
 
-        this.add(panel);
+        addMenuBar();
+
+        // TOP LAYOUT
+
+        GridBagLayout jPTopLayout = new GridBagLayout();
+        GridBagConstraints gbcTop = new GridBagConstraints();
+        jPTop.setLayout(jPTopLayout);
+
+        gbcTop.fill = GridBagConstraints.CENTER;
+        gbcTop.gridx = 0;
+        gbcTop.gridy = 0;
+        inputFileButton = new UIButton("Wybierz plik PDF",WIDTH4,HEIGHT,this);
+        jPTop.add(inputFileButton, gbcTop);
+
+        gbcTop.fill = GridBagConstraints.CENTER;
+        gbcTop.gridx = 0;
+        gbcTop.gridy = 1;
+        //gbc.gridwidth = 2; // na 2 wiersze
+        inputPathLabel = UILabel.ValueOfUILabel("Lokalizacja", 0,0, WIDTH3, HEIGHT2);
+        jPTop.add(inputPathLabel, gbcTop);
+
+
+        // Left LAYOUT
+
+        GridBagLayout jPTopLeft= new GridBagLayout();
+        GridBagConstraints gbcLeft= new GridBagConstraints();
+        jPLeft.setLayout(jPTopLeft);
+
+        gbcLeft.fill = GridBagConstraints.BOTH;
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 0;
+        leftTitleLabel = UILabel.ValueOfVisibleControlUILabel("Wybierz maszynę",0,0, WIDTH3, HEIGHT2,12,true);
+        jPLeft.add(leftTitleLabel, gbcLeft);
+
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 1;
+        spaceLabel = UILabel.ValueOfVisibleControlUILabel(" ",0,0, WIDTH3, HEIGHT2,12,true);
+        jPLeft.add(spaceLabel, gbcLeft);
+
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 2;
+        cmMachineRb = new UIRadioButton("Maszyna Współrzędnościowa",1, WIDTH1, HEIGHT, this);
+        jPLeft.add(cmMachineRb, gbcLeft);
+
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 3;
+        omMachineRb = new UIRadioButton("Maszyna Optyczna",2, WIDTH1, HEIGHT, this);
+        jPLeft.add(omMachineRb, gbcLeft);
+
+        gbcLeft.gridx = 0;
+        gbcLeft.gridy = 4;
+        mMachineRb = new UIRadioButton("Mikroskop",3,  WIDTH1, HEIGHT, this);
+        jPLeft.add(mMachineRb, gbcLeft);
+
+        machinesButtonGroup = new ButtonGroup();
+        machinesButtonGroup.add(cmMachineRb);
+        machinesButtonGroup.add(omMachineRb);
+        machinesButtonGroup.add(mMachineRb);
+
+        // RIGHT LAYOUT
+        GridBagLayout jPTopRight= new GridBagLayout();
+        GridBagConstraints gbcRight = new GridBagConstraints();
+        jPRight.setLayout(jPTopRight);
+
+        gbcRight.fill = GridBagConstraints.BOTH;
+        gbcRight.gridx = 0;
+        gbcRight.gridy = 0;
+        rightTitleLabel = UILabel.ValueOfVisibleControlUILabel("Wybierz typ raporu",0,0, WIDTH3, HEIGHT2,12,true);
+        jPRight.add(rightTitleLabel, gbcRight);
+
+        gbcRight.gridx = 0;
+        gbcRight.gridy = 1;
+        spaceLabel = UILabel.ValueOfVisibleControlUILabel(" ",0,0, WIDTH3, HEIGHT2,12,true);
+        jPRight.add(spaceLabel, gbcRight);
+
+        gbcRight.gridx = 0;
+        gbcRight.gridy = 2;
+        excelReportRb = new UIRadioButton("Plik MS Excel",1, WIDTH2, HEIGHT, this);
+        jPRight.add(excelReportRb, gbcRight);
+
+        gbcRight.gridx = 0;
+        gbcRight.gridy = 3;
+        textReportRb = new UIRadioButton("Plik tekstowy CVS",2, WIDTH2, HEIGHT, this);
+        jPRight.add(textReportRb, gbcRight);
+
+        gbcRight.gridx = 0;
+        gbcRight.gridy = 4;
+        rawTextReportRb = new UIRadioButton("Surowe dane tekstowe",3, WIDTH2, HEIGHT, this);
+        jPRight.add(rawTextReportRb, gbcRight);
+
+        reportsButtonGroup = new ButtonGroup();
+        reportsButtonGroup.add(excelReportRb);
+        reportsButtonGroup.add(textReportRb);
+        reportsButtonGroup.add(rawTextReportRb);
+
+        //Bottom
+        GridBagLayout jPTopBottom= new GridBagLayout();
+        GridBagConstraints gbcBottom = new GridBagConstraints();
+        jPBottom.setLayout(jPTopBottom);
+
+        gbcBottom.fill = GridBagConstraints.CENTER;
+        gbcBottom.gridx = 0;
+        gbcBottom.gridy = 0;
+        convertFileButton = new UIButton("Konwertuj", WIDTH4, HEIGHT,this);
+        jPBottom.add(convertFileButton, gbcBottom);
+
+        gbcBottom.gridx = 0;
+        gbcBottom.gridy = 1;
+        convertInfoLabel = UILabel.ValueOfVisibleControlUILabel("Komunikaty",0,0,  WIDTH3, HEIGHT2, 12, false);
+        jPBottom.add(convertInfoLabel, gbcBottom);
+
+        gbcBottom.gridx = 0;
+        gbcBottom.gridy = 2;
+        convertFilePathLabel = UILabel.ValueOfColorUILabel("Lokalizacja po konwersji",0,0, WIDTH3, HEIGHT2);
+        jPBottom.add(convertFilePathLabel, gbcBottom);
+
+        this.add(jPTop, BorderLayout.NORTH);
+        this.add(jPLeft, BorderLayout.WEST);
+        this.add(jPRight, BorderLayout.EAST);
+        this.add(jPBottom, BorderLayout.SOUTH);
         this.setVisible(true);
+    }
+
+    private void addMenuBar() {
+        menuBar = new UIMenuBar("||||", this);
+        this.setJMenuBar(menuBar);
     }
 
 
@@ -121,12 +198,34 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
     }
 
     private void addApplicationICO() {
-        ImageIcon ico = newImage("cc1.jpg");
+        ImageIcon ico = getResizeImage (newImage("file2.png"),16,16 );
         this.setIconImage(ico.getImage());
+    }
+
+    private ImageIcon getResizeImage(ImageIcon imageIcon, int width, int height){
+        Image img= imageIcon.getImage();
+        Image newImg = img.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(newImg);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == menuBar.getHelpMenuItem()){
+
+            String content = "Informacji udzieli: Marcin Janowski";
+            helpWindow = new UIMenuWindow(content, 600, 100);
+        }
+
+        if(e.getSource() == menuBar.getAboutMenuItem()){
+            String content = "Autor: Marcin Janowski. " +
+                    "Licencja: Freeware. Aplikacja dozwolona do użytku komercyjnego";
+            aboutWindow = new UIMenuWindow(content, 700,  100);
+        }
+
+        if(e.getSource() == menuBar.getExitMenuItem()){
+            System.exit(0);
+        }
 
         if(e.getSource() == inputFileButton){
             String DEFAULT_OPEN_DIR = System.getProperty("user.home") + "/Desktop";
@@ -191,7 +290,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         inputPathLabel.setVisible(false);
     }
     private void showConvertFilePathLabel(String path) {
-        Path.of(path).toUri();
+       // Path.of(path).toUri();
         convertFilePathLabel.setText(path);
         convertFilePathLabel.setVisible(true);
     }

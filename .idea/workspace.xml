@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="PDFDataLoader:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Change to Layer Architecture">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/MMachine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/Machine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/m1.pdf" afterDir="false" />
+    <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Add Microscope machine">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIMenuBar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIMenuWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/view/Window.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/file2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/files.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/ActionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/RepositoryActionObserver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportCharacteristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportCharacteristic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportFormat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/report/ReportHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/FileExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/OutputFileExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/PDFFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/PDFFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/TXTFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/TXTFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/XLSXFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/XLSXFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/CMMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/CMMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/MachineService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/MachineServiceRequirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/MachineRequirements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/MachineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/MachineType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/OMMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/machineservice/OMMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIFileChooser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportCharacteristic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportCharacteristic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/reportservice/ReportHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/InputFileExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/structure/lib/Return.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/structure/lib/Return.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UILabel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIRadioButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIRadioButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/ViewActionController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +41,8 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -83,15 +78,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Programowanie/Projekty/PDFDataLoader/src/main/resources&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TODO_SCOPE": "All Places",
+    "last.edited.regexp": "wqeqwe   ewqeq ",
+    "last_opened_file_path": "E:/Programowanie/Projekty/PDFDataLoader/src/main/resources",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.editor"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.example.view" />
@@ -106,6 +106,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Programowanie\Projekty\PDFDataLoader\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.view" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -207,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681244221432</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add Microscope machine">
+      <created>1681728921266</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681728921267</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,7 +237,8 @@
     <MESSAGE value="Change relations and structure of project." />
     <MESSAGE value="Add basic UI" />
     <MESSAGE value="Change to Layer Architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change to Layer Architecture" />
+    <MESSAGE value="Add Microscope machine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Microscope machine" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PDFDataLoader$Main.ic" NAME="Main Coverage Results" MODIFIED="1678273961230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -1,6 +1,7 @@
 package org.example.reportservice;
+/*
 
-record ReportHeader(String componentName,
+public record ReportHeader(String componentName,
                            String date,
                            String drawingNumber,
                            String partNumber1,
@@ -13,3 +14,4 @@ record ReportHeader(String componentName,
     }
 
 }
+*/

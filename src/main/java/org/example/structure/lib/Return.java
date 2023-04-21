@@ -59,7 +59,8 @@ public class Return {
             String messageTrue = "Valid Result";
             String messageFalse = "No valid Result";
 
-            if (message.isBlank()) {
+            //message.isBlank() // Java 17
+            if (message.equals("")) {
                 message = valid ? messageTrue : messageFalse;
             }
             this.message = message;

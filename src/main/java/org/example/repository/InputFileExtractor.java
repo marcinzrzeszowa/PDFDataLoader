@@ -57,8 +57,8 @@ public class InputFileExtractor extends FileExtractor {
                 throw new RuntimeException(e);
             }
         }
-        characteristicsList = characteristicsList.stream()
-                .filter(e->e!=null).toList();
+        /*characteristicsList = characteristicsList.stream()
+                .filter(e->e!=null).toList();*/
         return characteristicsList;
     }
 
@@ -107,9 +107,9 @@ public class InputFileExtractor extends FileExtractor {
         return matchedTextLine;
     }
 
-    //TODO
     private List<String> createCorrectArray(String lineOfText, LinkedHashSet<Integer> indexesOfValues) {
-        final String VALUES_SEPARATOR = "\s+";
+        // final String VALUES_SEPARATOR = "\s+"; //Java 17
+        final String VALUES_SEPARATOR = " +";
         List<String> strSplit = Arrays.asList(lineOfText.split(VALUES_SEPARATOR));
         int strSplitSize = strSplit.size();
 
