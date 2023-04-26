@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class UIMenuBar extends JMenuBar {
-
     private JMenu menu;
     private JMenuItem helpMenuItem, aboutMenuItem, exitMenuItem;
 

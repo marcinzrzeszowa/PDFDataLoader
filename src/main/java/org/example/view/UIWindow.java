@@ -61,7 +61,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         jPRight.setBackground(Color.WHITE);
         jPBottom.setBackground(meniColor);
 
-        addApplicationICO();
+        //addApplicationICO();
 
         addMenuBar();
 
@@ -198,7 +198,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
     }
 
     private void addApplicationICO() {
-        ImageIcon ico = getResizeImage (newImage("file2.png"),16,16 );
+        ImageIcon ico = getResizeImage (newImage("files.ico"),16,16 );
         this.setIconImage(ico.getImage());
     }
 
@@ -214,13 +214,14 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         if(e.getSource() == menuBar.getHelpMenuItem()){
 
             String content = "Informacji udzieli: Marcin Janowski";
-            helpWindow = new UIMenuWindow(content, 600, 100);
+            helpWindow = new UIMenuWindow(content, 280, 80);
         }
 
         if(e.getSource() == menuBar.getAboutMenuItem()){
-            String content = "Autor: Marcin Janowski. " +
-                    "Licencja: Freeware. Aplikacja dozwolona do użytku komercyjnego";
-            aboutWindow = new UIMenuWindow(content, 700,  100);
+            String content = "<html>Autor: Marcin Janowski. " +
+                    "<br> Licencja aplikacji: Dozwolone użycie i rozpowrzechnianie do celów komercyjnych." +
+                    "<br> Wydane dla BorgWarner Poland Sp. z o.o.<html>";
+            aboutWindow = new UIMenuWindow(content, 580,  110);
         }
 
         if(e.getSource() == menuBar.getExitMenuItem()){

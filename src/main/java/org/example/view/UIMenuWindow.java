@@ -4,44 +4,31 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UIMenuWindow {
+        private Integer HEIGHT, WIDTH;
         private UIPanel panel;
         private UILabel text;
         private JFrame frame;
 
 
     public UIMenuWindow(String content, Integer width, Integer height) {
+        this.WIDTH = width;
+        this.HEIGHT = height;
 
         frame = new JFrame();
-        frame.setSize(width, height);
+        frame.setSize(WIDTH, HEIGHT);
         frame.setResizable(false);
         frame.setFont(new Font("Verdana",Font.PLAIN,10));
         frame.setLocationRelativeTo(null);
-
-        GridBagLayout layout= new GridBagLayout();
-        GridBagConstraints layoutPosition = new GridBagConstraints();
-        layoutPosition.fill = GridBagConstraints.BOTH;
-        layoutPosition.gridx = 0;
-        layoutPosition.gridy = 0;
-        frame.setLayout(layout);
-
-
-
+        FlowLayout frameLayout = new FlowLayout(10);
+        frame.setLayout(frameLayout);
 
         panel = new UIPanel();
-        panel.setPreferredSize(new Dimension(width,height));
-        GridBagLayout panelLayout = new GridBagLayout();
-        GridBagConstraints position = new GridBagConstraints();
-        panel.setLayout(panelLayout);
 
-
-        text = UILabel.ValueOfColorUILabel(content,0,0,width,height);
-        position.gridx =0;
-        position.gridy= 0;
+        text = UILabel.ValueOfColorUILabel(content,0,0,WIDTH,HEIGHT);
         text.setVisible(true);
-        panel.add(text, position);
+        panel.add(text);
 
-
-        frame.add(panel,layoutPosition);
+        frame.add(panel);
         frame.setVisible(true);
     }
 }

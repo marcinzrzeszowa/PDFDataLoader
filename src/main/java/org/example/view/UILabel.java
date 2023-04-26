@@ -10,6 +10,7 @@ public class UILabel extends JLabel{
         this.setBounds(x,y,width,height);
         setFont(new Font("Verdana",Font.PLAIN,10));
         this.setOpaque(false);
+        this.setPreferredSize(new Dimension(width,height));
         this.setText(text);
         this.setVisible(false);
         //convertInfoLabel.setForeground(new Color(234,222,223));
@@ -31,6 +32,7 @@ public class UILabel extends JLabel{
     }
 
     public static UILabel ValueOfColorUILabel(String text, int x, int y, int width, int height){
+
         return new UILabel (text, x, y, width, height, true);
     }
 
