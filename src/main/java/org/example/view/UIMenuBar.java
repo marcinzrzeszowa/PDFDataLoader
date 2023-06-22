@@ -13,7 +13,7 @@ public class UIMenuBar extends JMenuBar {
         menu = new JMenu(name);
 
         helpMenuItem = new JMenuItem("Pomoc");
-        aboutMenuItem = new JMenuItem("Program");
+        aboutMenuItem = new JMenuItem("Licencja");
         exitMenuItem = new JMenuItem("Zamknij");
 
         helpMenuItem.addActionListener(actionListener);

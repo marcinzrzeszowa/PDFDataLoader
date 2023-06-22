@@ -11,9 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ca9c8672-e3d8-4673-aa1f-374beabe06ba" name="Changes" comment="Add manu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UILabel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIMenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIMenuBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIMenuWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIMenuWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/UIWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682073618895</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add manu">
+      <created>1682501734007</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682501734007</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

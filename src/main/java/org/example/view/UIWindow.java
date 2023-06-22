@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -16,11 +17,12 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
     private String filePath, filePathInfo;
 
     //UI
-    private static final int UI_WIDTH = 500;
+    private static final int UI_WIDTH = 530;
     private static final int UI_HEIGHT = 400;
     private int HEIGHT = 30;
     private int HEIGHT2 = 20;
     private int WIDTH4 = 100;
+    private int WIDTH5 = 300;
     private int WIDTH1 = 200;
     private int WIDTH2 = 200;
     private int WIDTH3 = 500;
@@ -39,7 +41,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         //Add Controller to View
         setViewController(new org.example.controller.Controller());
 
-        this.setTitle("Report Converter - Konwertuj raport PDF");
+        this.setTitle("Report Converter 1.0");
         this.setSize(UI_WIDTH, UI_HEIGHT);
         this.setResizable(false);
         this.setFont(new Font("Verdana",Font.PLAIN,10));
@@ -51,8 +53,8 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         jPRight = new UIPanel();
         jPBottom = new UIPanel();
         jPTop.setPreferredSize(new Dimension(200,80));
-        jPLeft.setPreferredSize(new Dimension(250,60));
-        jPRight.setPreferredSize(new Dimension(250,60));
+        jPLeft.setPreferredSize(new Dimension(UI_WIDTH/2,60));
+        jPRight.setPreferredSize(new Dimension(UI_WIDTH/2,60));
         jPBottom.setPreferredSize(new Dimension(200,100));
 
         Color meniColor = new Color(208, 229, 231);
@@ -61,7 +63,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         jPRight.setBackground(Color.WHITE);
         jPBottom.setBackground(meniColor);
 
-        //addApplicationICO();
+        addApplicationICO();
 
         addMenuBar();
 
@@ -94,7 +96,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         gbcLeft.fill = GridBagConstraints.BOTH;
         gbcLeft.gridx = 0;
         gbcLeft.gridy = 0;
-        leftTitleLabel = UILabel.ValueOfVisibleControlUILabel("Wybierz maszynę",0,0, WIDTH3, HEIGHT2,12,true);
+        leftTitleLabel = UILabel.ValueOfVisibleControlUILabel("Wybierz raport z maszyny",0,0, WIDTH3, HEIGHT2,12,true);
         jPLeft.add(leftTitleLabel, gbcLeft);
 
         gbcLeft.gridx = 0;
@@ -130,7 +132,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         gbcRight.fill = GridBagConstraints.BOTH;
         gbcRight.gridx = 0;
         gbcRight.gridy = 0;
-        rightTitleLabel = UILabel.ValueOfVisibleControlUILabel("Wybierz typ raporu",0,0, WIDTH3, HEIGHT2,12,true);
+        rightTitleLabel = UILabel.ValueOfVisibleControlUILabel("Wybierz format pliku po konwersji",0,0, WIDTH3, HEIGHT2,12,true);
         jPRight.add(rightTitleLabel, gbcRight);
 
         gbcRight.gridx = 0;
@@ -166,7 +168,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
         gbcBottom.fill = GridBagConstraints.CENTER;
         gbcBottom.gridx = 0;
         gbcBottom.gridy = 0;
-        convertFileButton = new UIButton("Konwertuj", WIDTH4, HEIGHT,this);
+        convertFileButton = new UIButton("Konwertuj plik ", WIDTH5, HEIGHT,this);
         jPBottom.add(convertFileButton, gbcBottom);
 
         gbcBottom.gridx = 0;
@@ -187,7 +189,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
     }
 
     private void addMenuBar() {
-        menuBar = new UIMenuBar("||||", this);
+        menuBar = new UIMenuBar("Program", this);
         this.setJMenuBar(menuBar);
     }
 
@@ -198,7 +200,7 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
     }
 
     private void addApplicationICO() {
-        ImageIcon ico = getResizeImage (newImage("files.ico"),16,16 );
+        ImageIcon ico = getResizeImage (newImage("file2.png"),16,16 );
         this.setIconImage(ico.getImage());
     }
 
@@ -213,15 +215,18 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
 
         if(e.getSource() == menuBar.getHelpMenuItem()){
 
-            String content = "Informacji udzieli: Marcin Janowski";
-            helpWindow = new UIMenuWindow(content, 280, 80);
+           /* String content = "Konwertuj pliki PDF na inne formaty";
+            helpWindow = new UIMenuWindow(content, 280, 80);*/
+            openHelpFile("m1.txt");
         }
 
         if(e.getSource() == menuBar.getAboutMenuItem()){
-            String content = "<html>Autor: Marcin Janowski. " +
-                    "<br> Licencja aplikacji: Dozwolone użycie i rozpowrzechnianie do celów komercyjnych." +
-                    "<br> Wydane dla BorgWarner Poland Sp. z o.o.<html>";
-            aboutWindow = new UIMenuWindow(content, 580,  110);
+            String content = "<html>" +
+                    "Licencja: Report Converter 1.0" +
+                    "<br> Dozwolone użycie i rozpowrzechnianie w celach użytkowych, wewnątrz" +
+                    "<br> spółki BorgWarner Poland Sp. z o.o." +
+                    "<br> Autor: Marcin Janowski.<html>";
+            aboutWindow = new UIMenuWindow(content, 580,  130);
         }
 
         if(e.getSource() == menuBar.getExitMenuItem()){
@@ -250,7 +255,6 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
                     hideConvertInfoLabel();
               }
         }
-
         if(e.getSource() == convertFileButton){
             convertActionEvent();
         }
@@ -308,6 +312,11 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
 
 
     private static ImageIcon newImage(String name){
+        String absolutePath = getPathFromResources(name);
+        return new ImageIcon(absolutePath);
+    }
+
+    private static String getPathFromResources(String name) {
         URL res = UIWindow.class.getClassLoader().getResource(name);
         File file = null;
         try {
@@ -316,8 +325,24 @@ public class UIWindow extends JFrame implements ActionListener , ViewActionCompo
             throw new RuntimeException(e);
         }
         String absolutePath = file.getAbsolutePath();
-        return new ImageIcon(absolutePath);
+        return absolutePath;
     }
 
-
+    private static void openHelpFile(String name){
+        String absolutePath = getPathFromResources(name);
+        File file = new File(absolutePath);
+        if(!Desktop.isDesktopSupported())
+        {
+            System.out.println("not supported");
+            return;
+        }
+        Desktop desktop = Desktop.getDesktop();
+        try {
+            desktop.open(file);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
